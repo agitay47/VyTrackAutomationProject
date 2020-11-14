@@ -12,9 +12,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <!-- to set java version for the project (change java 5 to java 8), by adding compiler plugins -->
     <build>
-
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -25,40 +23,28 @@
                     <target>8</target>
                 </configuration>
             </plugin>
-
-            <!-- this plugin is for generating reports and testFailureIgnore for the ignoring failed tests-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M5</version>
                 <configuration>
                     <testFailureIgnore>true</testFailureIgnore>
-
-                    <!-- to be bale to run tests in parallel-->
                     <parallel>classes</parallel>
                     <threadCount>2</threadCount>
                     <forkCount>2C</forkCount>
                     <perCoreThreadCount>false</perCoreThreadCount>
-
                     <includes>
-                        <include>**/CucumberRunner.java</include>
-                        <include>**/CucumberRunner2.java</include>
                         <include>**/CucumberRunner*.java</include>
-
                     </includes>
                 </configuration>
-
             </plugin>
-
-            <!-- this plugin is for the reports-->
             <plugin>
                 <groupId>net.masterthought</groupId>
                 <artifactId>maven-cucumber-reporting</artifactId>
-                <version>5.0.0</version>
+                <version>5.4.0</version>
                 <executions>
                     <execution>
                         <id>execution</id>
-                        <!-- verify comes from maven lifecycle, after test-->
                         <phase>verify</phase>
                         <goals>
                             <goal>generate</goal>
@@ -74,32 +60,26 @@
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
     </build>
 
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>3.141.59</version>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
             <version>4.2.2</version>
         </dependency>
-
         <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
             <version>6.8.1</version>
         </dependency>
-
         <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
         <dependency>
             <groupId>io.cucumber</groupId>
@@ -107,14 +87,12 @@
             <version>6.8.1</version>
             <scope>test</scope>
         </dependency>
-
         <!-- https://mvnrepository.com/artifact/com.github.javafaker/javafaker -->
         <dependency>
             <groupId>com.github.javafaker</groupId>
             <artifactId>javafaker</artifactId>
             <version>1.0.2</version>
         </dependency>
-
     </dependencies>
 
 
